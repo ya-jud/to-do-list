@@ -6,7 +6,22 @@ module.exports = {
   entry: "./src/index.js",
   module: {
     rules: [
-      { test: /\.js$/, use: "babel-loader" },
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
+      },
+      { 
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options: {
+          presets: ['@babel/preset-env'],
+          plugins: [
+            ['import', { libraryName: "antd", style: true }]
+          ]
+        },
+      },
       { test: /\.vue$/, loader: "vue-loader" },
       { test: /\.css$/, use: ["vue-style-loader", "css-loader"] },
     ],
@@ -22,5 +37,9 @@ module.exports = {
     }),
     new VueLoaderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false,
+    }),
   ],
 };

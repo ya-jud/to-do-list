@@ -1,16 +1,12 @@
 import { createWebHashHistory, createRouter } from 'vue-router';
+import todoList from '../views/todoList.vue'
 
 const routes = [
-    // {
-    //     path: "/Textarea",
-    //     name: "Textarea",
-    //     component: Textarea
-    // },
-    // {
-    //     path: "/TableResult",
-    //     name: "Tableresult",
-    //     component: TableResult
-    // }
+    {
+        path: "/todolist",
+        name: "todo List",
+        component: todoList
+    },
 ];
 
 export default createRouter({
