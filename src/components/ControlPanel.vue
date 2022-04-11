@@ -2,34 +2,64 @@
 <div class="center">
     <a-row justify="space-between" align="middle">
         <a-select
+            ref="select"
             v-model:value="value"
             style="width: 30vh"
-            
-            autofocus
+            @change="handleChange"
+            :options="options"
         >
-        <!-- @change="handleChange"  -->
-            <a-select-option value="jack">All tasks</a-select-option>
-            <a-select-option value="lucy">Active</a-select-option>
-            <a-select-option value="Yiminghe">Completed</a-select-option>
         </a-select>
 
         <a-col :span="6" align="middle">
-            <span style="vertical-align: middle">Total tasks: </span>
+            <span style="vertical-align: middle">Total tasks: {{ store.state.tasksCounter }}</span>
         </a-col>
         
+        <a-button v-if="completed" @click="store.dispatch('deleteTask')">Clear completed</a-button>
+
     </a-row>
 </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
     setup() {
-        const value = ref([]);
+        const store = useStore();
+        const completed =
+            computed( function() {
+                let tasks = store.state.tasks
+                for(let i = 0; i < tasks.length; i++) {
+                    if(tasks[i].completed) {
+                        return true
+                    }
+                };
+            }
+        );
+
+        // state
+        const options = ref([{
+            value: 'tasks',
+            label: 'All tasks',
+        }, {
+            value: 'active',
+            label: 'Active',
+        }, {
+            value: 'completed',
+            label: 'Completed',
+        },]);
+
+        // methods
+        const handleChange = value => {
+            store.dispatch("setFilterTasks", value);
+        };
         return {
-            value,
-            // hundleChange,
+            store,
+            completed,
+            handleChange,
+            value: ref('tasks'),
+            options
         };
     }
 }

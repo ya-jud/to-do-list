@@ -18,10 +18,6 @@ export default {
             if(e.key === 'Enter' && !store.state.isOpenModal){
                 store.dispatch("changeStateModal", true);
             }
-            if(e.key === 'Enter' && store.state.isOpenModal) {
-                console.log('ok')
-                // store.dispatch("changeStateModal", false)
-            }
             else return null
         }
         window.addEventListener('keydown', this.handler);

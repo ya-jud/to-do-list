@@ -1,17 +1,20 @@
 <template>
-    <div class="addButton" @click="addTask">
+    <div class="addButton" @click="store.dispatch('changeStateModal', true)">
         <a-button shape="circle" size="large">+</a-button>
     </div>
 </template>
 
 <script>
+import { useStore } from "vuex";
+
 export default {
-    setup() {},
-    methods: {
-        addTask() {
-            this.$store.dispatch("changeStateModal", true);
+    setup() {
+        const store = useStore();
+
+        return {
+            store
         }
-    }
+    },
 }
 </script>
 
