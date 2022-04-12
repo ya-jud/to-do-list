@@ -32,11 +32,11 @@ export default {
         });
 
         // methods
-        const clearArea = function() {
+        const clearArea = () => {
             task.text = ""
             store.dispatch("changeStateModal", false);
         };
-        const setTask = function() {
+        const setTask = () => {
             store.dispatch("addNewTask", task.text);
             task.text = ""
             store.dispatch("changeStateModal", false);

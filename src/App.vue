@@ -11,6 +11,7 @@ import store from './store/index'
 import router from './router/index'
 
 export default {
+    // переписать на setup
     mounted() {
         const component = this;
         this.handler = function (e) {

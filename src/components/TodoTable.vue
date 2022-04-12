@@ -1,5 +1,6 @@
 <template>
     <div class="scrollable">
+        <!-- у ант есть свои фильтры, переписать надо -->
        <Task
             v-for="(task, index) in filteredTasks"
             :key="task.id"
@@ -25,16 +26,18 @@ export default {
     setup() {
         const store = useStore();
 
-        const filteredTasks = computed( function() {
-            if(store.state.stateFilter === "active") {
-                store.dispatch("setActiveTasks");
-                return store.state.filteredTasks;
-            }
-            if(store.state.stateFilter === "completed") {
-                store.dispatch("setCompletedTasks");
-                return store.state.filteredTasks;
-            }
-            else return store.state.tasks;
+        // computed
+        const filteredTasks = computed(() => {
+            switch(store.state.stateFilter) {
+                case 'tasks':
+                    return store.state.tasks;
+                case 'active':
+                    return store.state.tasks.filter((task) =>  !task.completed );
+                case 'completed':
+                    return store.state.tasks.filter((task) => task.completed);
+                default:
+                    return null // catch((err) => {})
+            };
         });
 
         return {

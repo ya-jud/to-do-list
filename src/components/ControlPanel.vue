@@ -1,6 +1,6 @@
 <template>
 <div class="center">
-    <a-row justify="space-between" align="middle">
+    <a-row justify="space-between" align="middle" :wrap="false">
         <a-select
             ref="select"
             v-model:value="value"
@@ -14,7 +14,7 @@
             <span style="vertical-align: middle">Total tasks: {{ store.state.tasksCounter }}</span>
         </a-col>
         
-        <a-button v-if="completed" @click="store.dispatch('deleteTask')">Clear completed</a-button>
+        <a-button v-show="completed" @click="store.dispatch('deleteTask')">Clear completed</a-button>
 
     </a-row>
 </div>
@@ -27,18 +27,8 @@ import { useStore } from 'vuex'
 export default {
     setup() {
         const store = useStore();
-        const completed =
-            computed( function() {
-                let tasks = store.state.tasks
-                for(let i = 0; i < tasks.length; i++) {
-                    if(tasks[i].completed) {
-                        return true
-                    }
-                };
-            }
-        );
 
-        // state
+        // values
         const options = ref([{
             value: 'tasks',
             label: 'All tasks',
@@ -49,6 +39,11 @@ export default {
             value: 'completed',
             label: 'Completed',
         },]);
+
+        // computed
+        const completed = computed(() => {
+            return store.state.tasks.some((task) => task.completed)
+        });
 
         // methods
         const handleChange = value => {
@@ -66,9 +61,6 @@ export default {
 </script>
 
 <style scoped>
-.ant-row {
-    flex-flow: nowrap;
-}
 .ant-row > .ant-col {
     margin: 0 3vh;
 }

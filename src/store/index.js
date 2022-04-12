@@ -6,7 +6,6 @@ export default createStore({
         isOpenModal: false,
         tasksCounter: 0,
         tasks: [],
-        filteredTasks: [],
         stateFilter: "",
     },
     mutations: {
@@ -23,25 +22,10 @@ export default createStore({
             state.tasks[i.index].completed = i.completed;
         },
         deleteTask(state) {
-            let tasks = state.tasks;
-            state.tasks = tasks.filter((n) => {
-                return !n.completed;
-            });
+            state.tasks = state.tasks.filter((task) => !task.completed);
         },
         setStateFilter(state, i) {
             state.stateFilter = i;
-        },
-        setActiveTasks(state) {
-            let tasks = state.tasks;
-            state.filteredTasks = tasks.filter((n) => {
-                return !n.completed;
-            });
-        },
-        setCompletedTasks(state) {
-            let tasks = state.tasks;
-            state.filteredTasks = tasks.filter((n) => {
-                return n.completed;
-            });
         }
     },
     actions: {
@@ -61,13 +45,7 @@ export default createStore({
         },
         setFilterTasks(state, i) {
             state.commit("setStateFilter", i);
-        },
-        setActiveTasks(state) {
-            state.commit("setActiveTasks");
-        },
-        setCompletedTasks(state) {
-            state.commit("setCompletedTasks");
-        },
+        }
     },
     plugins: [createPersistedState()],
 });
