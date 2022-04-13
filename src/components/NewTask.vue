@@ -41,7 +41,7 @@ export default {
             if(!task.text) return message.warning("You didn't write anything!");
             store.dispatch("addNewTask", {
                 text: task.text,
-                createdDate: new Date(document.lastModified).toLocaleDateString(),
+                createdDate: new Date().toLocaleDateString(),
             });
             clearArea();
             message.success('Task added!');
