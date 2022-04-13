@@ -34,22 +34,17 @@ export default {
 
         // methods
         const clearArea = () => {
-            task.text = ""
+            task.text = '';
             store.dispatch("changeStateModal", false);
-        };
-        const success = () => {
-            message.success({
-                content: () => 'Task added!',
-            });
         };
         const setTask = () => {
-            if(!task.text) {
-                return message.warning("You didn't write anything!");
-            }
-            store.dispatch("addNewTask", task.text);
-            task.text = "";
-            store.dispatch("changeStateModal", false);
-            success();
+            if(!task.text) return message.warning("You didn't write anything!");
+            store.dispatch("addNewTask", {
+                text: task.text,
+                createdDate: new Date(document.lastModified).toLocaleDateString(),
+            });
+            clearArea();
+            message.success('Task added!');
         };
         
         return {

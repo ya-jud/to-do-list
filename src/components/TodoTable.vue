@@ -10,6 +10,9 @@
             <template #task>
                 {{ task.text }}
             </template>
+            <template #createdDate>
+                {{ task.createdDate }}
+            </template>
         </Task> 
     </div>
 </template>

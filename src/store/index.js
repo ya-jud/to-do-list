@@ -33,7 +33,7 @@ export default createStore({
             state.commit("setOpenModal", i);
         },
         addNewTask(state, i) {
-            state.commit("setTask", { text: i, completed: false });
+            state.commit("setTask", { text: i.text, completed: false, createdDate: i.createdDate });
             state.commit("setCounter");
         },
         completedTask(state, i) {
