@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { message } from 'ant-design-vue';
 import { reactive } from 'vue'
 import { useStore } from 'vuex'
 
@@ -36,11 +37,20 @@ export default {
             task.text = ""
             store.dispatch("changeStateModal", false);
         };
+        const success = () => {
+            message.success({
+                content: () => 'Task added!',
+            });
+        };
         const setTask = () => {
+            if(!task.text) {
+                return message.warning("You didn't write anything!");
+            }
             store.dispatch("addNewTask", task.text);
-            task.text = ""
+            task.text = "";
             store.dispatch("changeStateModal", false);
-        }
+            success();
+        };
         
         return {
             store,
