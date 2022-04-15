@@ -21,8 +21,11 @@ export default createStore({
         setCompleted(state, i) {
             state.tasks[i.index].completed = i.completed;
         },
-        deleteTask(state) {
+        deleteListTasks(state) {
             state.tasks = state.tasks.filter((task) => !task.completed);
+        },
+        deleteTask(state, i) {
+            state.tasks.splice(i, 1);
         },
         setStateFilter(state, i) {
             state.stateFilter = i;
@@ -37,10 +40,14 @@ export default createStore({
             state.commit("setCounter");
         },
         completedTask(state, i) {
-            state.commit("setCompleted", { index: i, completed: true });
+            state.commit("setCompleted", { index: i.idTask, completed: i.completed });
         },
-        deleteTask(state) {
-            state.commit("deleteTask");
+        deleteListTasks(state) {
+            state.commit("deleteListTasks");
+            state.commit("setCounter");
+        },
+        deleteTask(state, i) {
+            state.commit("deleteTask", i)
             state.commit("setCounter");
         },
         setFilterTasks(state, i) {

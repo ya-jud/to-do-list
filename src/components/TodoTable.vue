@@ -4,9 +4,10 @@
        <Task
             v-for="(task, index) in filteredTasks"
             :key="task.id"
-            @click="store.dispatch('completedTask', index)"
             :class="{ active: filteredTasks[index].completed }"
+            :idTask="index"
         >
+        <!--             @click="store.dispatch('completedTask', index)" -->
             <template #task>
                 {{ task.text }}
             </template>

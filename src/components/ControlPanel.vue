@@ -14,7 +14,7 @@
             <span style="vertical-align: middle">Total tasks: {{ store.state.tasksCounter }}</span>
         </a-col>
         
-        <a-button v-show="completed" @click="store.dispatch('deleteTask')">Clear completed</a-button>
+        <a-button v-show="completed" @click="store.dispatch('deleteListTasks')">Clear completed</a-button>
 
     </a-row>
 </div>

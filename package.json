@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ya-jud/to-do-list#readme",
   "devDependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
     "ant-design-vue": "^3.1.1",

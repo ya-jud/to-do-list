@@ -1,11 +1,14 @@
 <template>
     <div class="addButton" @click="store.dispatch('changeStateModal', true)">
-        <a-button shape="circle" size="large">+</a-button>
+        <a-button shape="circle" size="large">
+            <template #icon><plus-outlined /></template>
+        </a-button>
     </div>
 </template>
 
 <script>
-import { useStore } from "vuex";
+import { useStore } from 'vuex';
+import { PlusOutlined } from '@ant-design/icons-vue';
 
 export default {
     setup() {
@@ -15,6 +18,9 @@ export default {
             store
         }
     },
+    components: {
+        PlusOutlined
+    }
 }
 </script>
 
