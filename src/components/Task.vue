@@ -3,7 +3,7 @@
         <a-card hoverable>
             <a-checkbox
                 class="checkbox"
-                v-model:checked="task.completed"
+                v-model:checked="store.state.tasks[idTask].completed"
                 @change="changeTaskStatus"
             ></a-checkbox>
             <span><slot name="task"></slot></span>
@@ -39,20 +39,20 @@ export default {
 
         // values
         const task = reactive({
-            completed: false,
+            completed: store.state.tasks[props.idTask].completed,
         });
 
         const changeTaskStatus = () => {
-            store.dispatch('completedTask', { 
+            store.dispatch('completedTask', {
                 idTask: props.idTask,
-                completed: task.completed
+                completed: !task.completed
             });
         }
 
         return {
             store,
             task,
-            changeTaskStatus
+            changeTaskStatus,
         }
     }
 }

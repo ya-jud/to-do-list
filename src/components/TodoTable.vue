@@ -1,13 +1,11 @@
 <template>
     <div class="scrollable">
-        <!-- у ант есть свои фильтры, переписать надо -->
        <Task
-            v-for="(task, index) in filteredTasks"
+            v-for="(task, index) in store.state.tasks"
             :key="task.id"
-            :class="{ active: filteredTasks[index].completed }"
+            :class="{ active: store.state.tasks[index].completed }"
             :idTask="index"
         >
-        <!--             @click="store.dispatch('completedTask', index)" -->
             <template #task>
                 {{ task.text }}
             </template>
@@ -19,9 +17,8 @@
 </template>
 
 <script>
-import Task from './Task.vue'
-import { computed } from 'vue';
-import { useStore } from 'vuex'
+import Task from './Task.vue';
+import { useStore } from 'vuex';
 
 export default {
     components: {
@@ -29,24 +26,8 @@ export default {
     },
     setup() {
         const store = useStore();
-
-        // computed
-        const filteredTasks = computed(() => {
-            switch(store.state.stateFilter) {
-                case 'tasks':
-                    return store.state.tasks;
-                case 'active':
-                    return store.state.tasks.filter((task) =>  !task.completed );
-                case 'completed':
-                    return store.state.tasks.filter((task) => task.completed);
-                default:
-                    return null // catch((err) => {})
-            };
-        });
-
         return {
             store,
-            filteredTasks
         }
     },
 }

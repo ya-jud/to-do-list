@@ -4,6 +4,7 @@
         title="New task"
         :afterClose="clearArea"
         @ok="setTask"
+        centered
     >
         <a-space direction="vertical" justify="center">
             <a-textarea

@@ -8,6 +8,20 @@ export default createStore({
         tasks: [],
         stateFilter: "",
     },
+    getters: {
+        filteredTasks(state) {
+            switch(state.stateFilter) {
+                case 'tasks':
+                    return state.tasks;
+                case 'active':
+                    return state.tasks.filter((task) =>  !task.completed);
+                case 'completed':
+                    return state.tasks.filter((task) => task.completed);
+                default:
+                    return null // catch((err) => {})
+            }
+        }
+    },
     mutations: {
         setOpenModal(state, i) {
             state.isOpenModal = i;
@@ -36,7 +50,11 @@ export default createStore({
             state.commit("setOpenModal", i);
         },
         addNewTask(state, i) {
-            state.commit("setTask", { text: i.text, completed: false, createdDate: i.createdDate });
+            state.commit("setTask", {
+                text: i.text,
+                completed: false,
+                createdDate: i.createdDate
+            });
             state.commit("setCounter");
         },
         completedTask(state, i) {
