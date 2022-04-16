@@ -1,13 +1,11 @@
 <template>
     <div class="scrollable">
-        <!-- у ант есть свои фильтры, переписать надо -->
        <Task
             v-for="(task, index) in filteredTasks"
             :key="task.id"
             :class="{ active: filteredTasks[index].completed }"
             :idTask="index"
         >
-        <!--             @click="store.dispatch('completedTask', index)" -->
             <template #task>
                 {{ task.text }}
             </template>
