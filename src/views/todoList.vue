@@ -19,8 +19,8 @@
 <script>
 import TodoTable from '../components/TodoTable.vue'
 import ConstrolPanel from '../components/ControlPanel.vue'
-import AddTask from '../components/AddTask.vue'
-import NewTask from '../components/NewTask.vue'
+import AddTask from '../components/AddTaskButton.vue'
+import NewTask from '../components/NewTaskDialog.vue'
 
 export default {
     components: {
