@@ -38,20 +38,17 @@ export default {
         const store = useStore();
 
         // values
-        const task = reactive({
-            completed: store.state.tasks[props.idTask].completed,
-        });
+        // const task = reactive({
+        //     completed: store.state.tasks[props.idTask].completed,
+        // });
 
         const changeTaskStatus = () => {
-            store.dispatch('completedTask', {
-                idTask: props.idTask,
-                completed: !task.completed
-            });
+            store.dispatch('completedTask', props.idTask);
         }
 
         return {
             store,
-            task,
+            // task,
             changeTaskStatus,
         }
     }

@@ -33,7 +33,9 @@ export default createStore({
             state.tasks.push(i);
         },
         setCompleted(state, i) {
-            state.tasks[i.index].completed = i.completed;
+            // console.log("1: " + state.tasks[i].completed);
+            // !state.tasks[i].completed;
+            // console.log("2: " + state.tasks[i].completed);
         },
         deleteListTasks(state) {
             state.tasks = state.tasks.filter((task) => !task.completed);
@@ -50,7 +52,14 @@ export default createStore({
             state.commit("setOpenModal", i);
         },
         addNewTask(state, i) {
+            // не знаю насколько профитно, делал "по-фану".
+            // По сути генерирую свой айдишник для таски.
+            let uid = () => {
+                let randomValue = Math.floor(Math.random() * (99 - 10) + 10) + "";
+                return randomValue + this.state.tasksCounter;
+            };
             state.commit("setTask", {
+                uid: uid(),
                 text: i.text,
                 completed: false,
                 createdDate: i.createdDate
@@ -58,7 +67,7 @@ export default createStore({
             state.commit("setCounter");
         },
         completedTask(state, i) {
-            state.commit("setCompleted", { index: i.idTask, completed: i.completed });
+            state.commit("setCompleted", i);
         },
         deleteListTasks(state) {
             state.commit("deleteListTasks");

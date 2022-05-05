@@ -2,7 +2,7 @@
     <div class="scrollable">
        <Task
             v-for="(task, index) in store.state.tasks"
-            :key="task.id"
+            :key="task.uid"
             :class="{ active: store.state.tasks[index].completed }"
             :idTask="index"
         >
