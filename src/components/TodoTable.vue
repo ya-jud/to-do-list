@@ -1,9 +1,9 @@
 <template>
     <div class="scrollable">
        <Task
-            v-for="(task, index) in store.state.tasks"
+            v-for="(task, index) in store.getters.filteredTasks"
             :key="task.uid"
-            :class="{ active: store.state.tasks[index].completed }"
+            :class="{ active: store.getters.filteredTasks[index].completed }"
             :idTask="index"
         >
             <template #task>
@@ -12,7 +12,7 @@
             <template #createdDate>
                 {{ task.createdDate }}
             </template>
-        </Task> 
+        </Task>
     </div>
 </template>
 

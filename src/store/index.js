@@ -32,11 +32,12 @@ export default createStore({
         setTask(state, i) {
             state.tasks.push(i);
         },
-        setCompleted(state, i) {
-            // console.log("1: " + state.tasks[i].completed);
-            // !state.tasks[i].completed;
-            // console.log("2: " + state.tasks[i].completed);
-        },
+        // так как я не использую tasks, а вместо использую filteredTasks из getters,
+        // то и мутация как таковая не нужна.
+        // другого действительно не придумал
+        // setCompleted(state, i) {
+        //     state.tasks[i].completed = !state.tasks[i].completed;
+        // },
         deleteListTasks(state) {
             state.tasks = state.tasks.filter((task) => !task.completed);
         },
@@ -66,8 +67,11 @@ export default createStore({
             });
             state.commit("setCounter");
         },
-        completedTask(state, i) {
-            state.commit("setCompleted", i);
+        completedTask({commit, getters}, i) {
+            // commit('setCompleted', i);
+            // целесообразно ли? не мог давно решить свою проблемаму с фильтрами...
+            // в итоге пришел к такому решению:
+            getters.filteredTasks[i].completed = !getters.filteredTasks[i].completed
         },
         deleteListTasks(state) {
             state.commit("deleteListTasks");

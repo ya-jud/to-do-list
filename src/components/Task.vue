@@ -3,8 +3,7 @@
         <a-card hoverable>
             <a-checkbox
                 class="checkbox"
-                v-model:checked="store.state.tasks[idTask].completed"
-                @change="changeTaskStatus"
+                v-model:checked="taskStatus"
             ></a-checkbox>
             <span><slot name="task"></slot></span>
             <span class="create-date">
@@ -22,7 +21,7 @@
 <script>
 import { CloseOutlined } from '@ant-design/icons-vue';
 import { useStore } from 'vuex';
-import { reactive } from 'vue';
+import { computed } from 'vue';
 
 export default {
     components: {
@@ -38,19 +37,16 @@ export default {
         const store = useStore();
 
         // values
-        // const task = reactive({
-        //     completed: store.state.tasks[props.idTask].completed,
-        // });
-
-        const changeTaskStatus = () => {
-            store.dispatch('completedTask', props.idTask);
-        }
+        const 
+        taskStatus = computed({
+            get() { return store.getters.filteredTasks[props.idTask].completed },
+            set() { store.dispatch('completedTask', props.idTask) }
+        });
 
         return {
             store,
-            // task,
-            changeTaskStatus,
-        }
+            taskStatus,
+        };
     }
 }
 </script>
