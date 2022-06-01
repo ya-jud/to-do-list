@@ -36,6 +36,6 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
-    min-width: 360px;
+    min-width: 560px;
 }
 </style>

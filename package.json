@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack serve --mode development",
-    "build": "webpack"
+    "start": "webpack serve --mode=development",
+    "build": "webpack",
+    "build-prod": "webpack --mode=production",
+    "clean": "rd /s /q dist"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,7 @@
     "url": "https://github.com/ya-jud/to-do-list/issues"
   },
   "homepage": "https://github.com/ya-jud/to-do-list#readme",
+  "type": "module",
   "devDependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "@babel/core": "^7.17.9",
@@ -26,7 +29,7 @@
     "babel-plugin-import": "^1.13.3",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
-    "nodemon": "^2.0.15",
+    "mini-css-extract-plugin": "^2.6.0",
     "source-map-loader": "^3.0.1",
     "vue": "^3.2.31",
     "vue-loader": "^17.0.0",
