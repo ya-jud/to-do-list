@@ -18,62 +18,50 @@
   </a-row>
 </template>
 
-<script>
-import { CloseOutlined } from '@ant-design/icons-vue';
-import { useStore } from 'vuex';
-import { computed } from 'vue';
+<script setup>
+  import { CloseOutlined } from "@ant-design/icons-vue";
+  import { useStore } from "vuex";
+  import { computed } from "vue";
 
-export default {
-  components: {
-    CloseOutlined,
-  },
-  props: {
+  const store = useStore();
+
+  const props = defineProps({
     idTask: {
       type: Number,
       default: 0,
     }
-  },
-  setup(props) {
-    const store = useStore();
+  });
 
-    // values
-    const taskStatus = computed({
-      get() { return store.getters.filteredTasks[props.idTask].completed },
-      set() { store.dispatch('completedTask', props.idTask) }
-    });
-
-    return {
-      store,
-      taskStatus,
-    };
-  }
-}
+  const taskStatus = computed({
+    get() { return store.getters.filteredTasks[props.idTask].completed },
+    set() { store.dispatch("completedTask", props.idTask) }
+  });
 </script>
 
 <style scoped>
-.ant-row {
-  padding: 10px;
-}
-.ant-row > div {
-  width: 100%;
-  position: relative;
-}
-.create-date {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  font-size: .9em;
-  padding: 10px;
-  color: #8b8b8b;
-}
-.close-task {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 10px;
-  color: #8b8b8b;
-}
-.checkbox {
-  padding: 0 20px 0 0;
-}
+  .ant-row {
+    padding: 10px;
+  }
+  .ant-row > div {
+    width: 100%;
+    position: relative;
+  }
+  .create-date {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: .9em;
+    padding: 10px;
+    color: #8b8b8b;
+  }
+  .close-task {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    color: #8b8b8b;
+  }
+  .checkbox {
+    padding: 0 20px 0 0;
+  }
 </style>

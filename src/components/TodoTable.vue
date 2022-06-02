@@ -17,8 +17,8 @@
 </template>
 
 <script setup>
-  import Task from './Task.vue';
-  import { useStore } from 'vuex';
+  import Task from "./Task.vue";
+  import { useStore } from "vuex";
 
   const store = useStore();
 </script>
