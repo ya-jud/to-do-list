@@ -1,54 +1,44 @@
 <template>
-    <a-layout>
+  <a-layout>
 
-        <a-layout-header style="text-align: center">
-            <h1 class="title">TodoList</h1>
-        </a-layout-header>
+    <a-layout-header style="text-align: center">
+      <h1 class="title">TodoList</h1>
+    </a-layout-header>
 
-        <a-layout-content style="padding: 25px 20px">
-            <ConstrolPanel></ConstrolPanel>
+    <a-layout-content style="padding: 25px 20px">
+      <ConstrolPanel></ConstrolPanel>
+      <TodoTable></TodoTable>
+    </a-layout-content>
 
-            <TodoTable></TodoTable>
-        </a-layout-content>
-
-    </a-layout>
-    <AddTask></AddTask>
-    <NewTask></NewTask>
+  </a-layout>
+  <AddTask></AddTask>
+  <NewTask></NewTask>
 </template>
 
-<script>
-import TodoTable from '../components/TodoTable.vue'
-import ConstrolPanel from '../components/ControlPanel.vue'
-import AddTask from '../components/AddTaskButton.vue'
-import NewTask from '../components/NewTaskDialog.vue'
-
-export default {
-    components: {
-        TodoTable,
-        ConstrolPanel,
-        AddTask,
-        NewTask,
-    }
-}
+<script setup>
+  import TodoTable from "../components/TodoTable.vue";
+  import ConstrolPanel from "../components/ControlPanel.vue";
+  import AddTask from "../components/AddTaskButton.vue";
+  import NewTask from "../components/NewTaskDialog.vue";
 </script>
 
 <style scoped>
-.title {
+  .title {
     color: white;
     cursor: default;
-}
+  }
 
-.ant-layout {
+  .ant-layout {
     position: relative;
     height: 100%;
     width: 100%;
-}
-.ant-layout-content {
+  }
+  .ant-layout-content {
     height: 100%;
     width: 100%;
-}
+  }
 
-.ant-space {
+  .ant-space {
     width: 100%;
-}
+  }
 </style>
