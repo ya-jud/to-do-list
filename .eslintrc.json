@@ -1,0 +1,5 @@
+{
+  "vue/component-api-style": ["error",
+    ["script-setup", "composition"]
+  ]
+}

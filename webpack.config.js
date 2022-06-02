@@ -16,9 +16,9 @@ const plugins = [
   new MiniCssExtractPlugin(),
   new VueLoaderPlugin(),
   new webpack.DefinePlugin({
-		__VUE_OPTIONS_API__: true,
-		__VUE_PROD_DEVTOOLS__: false,
-	}),
+    __VUE_OPTIONS_API__: true,
+    __VUE_PROD_DEVTOOLS__: false,
+  }),
 ];
 
 const module = {
@@ -34,8 +34,8 @@ const output = {
 };
 
 const resolve = {
-	extensions: ['.js', '.vue'],
-	modules: [path.join(process.cwd(), 'src'), 'node_modules'],
+  extensions: ['.js', '.vue'],
+  modules: [path.join(process.cwd(), 'src'), 'node_modules'],
 };
 
 const config = {
