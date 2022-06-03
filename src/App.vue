@@ -11,6 +11,7 @@
   import router from './router/index'
   export default {
       // переписать на setup
+      // UPD: Была попытка... ничего не работало. Нужно решить эту проблему.
     mounted() {
       const component = this;
       this.handler = function (e) {

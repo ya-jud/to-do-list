@@ -38,6 +38,14 @@ const resolve = {
   modules: [path.join(process.cwd(), 'src'), 'node_modules'],
 };
 
+const devServer = {
+  hot: true,
+  open: process.platform === 'darwin',
+  host: '0.0.0.0',
+  port: 8080,
+  https: true
+};
+
 const config = {
   entry: ['./src/index.js'],
   plugins,
@@ -45,9 +53,7 @@ const config = {
   output,
   resolve,
   devtool: 'source-map',
-  devServer: {
-    hot: true
-  }, 
+  devServer, 
 };
 
 export default config;
