@@ -3,10 +3,11 @@
     <a-row justify="space-between" align="middle" :wrap="false">
       <a-select
         ref="select"
-        v-model:value="value"
+        v-model:value="options.value"
         style="width: 30vh"
         @change="handleChange"
         :options="options"
+        :default-value="{ key: store.state.stateFilter }"
       >
       </a-select>
 
@@ -34,21 +35,26 @@
 
   const options = ref([
     {
-      value: 'tasks',
-      label: 'All tasks',
-    },
-    {
-      value: 'active',
-      label: 'Active',
-    },
-    {
-      value: 'completed',
-      label: 'Completed',
-    },
+      label: 'Filter',
+      options: [
+        {
+          value: 'tasks',
+          label: 'All tasks',
+        },
+        {
+          value: 'active',
+          label: 'Active',
+        },
+        {
+          value: 'completed',
+          label: 'Completed',
+        }
+      ]
+    }
   ]);
 
   const completed = computed(() => {
-    return store.state.tasks.some((task) => task.completed)
+    return store.state.tasks.some((task) => task.completed);
   });
 
   const handleChange = value => {
